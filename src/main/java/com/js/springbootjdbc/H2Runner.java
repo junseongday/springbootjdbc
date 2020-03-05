@@ -25,17 +25,18 @@ public class H2Runner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        try(Connection connection = dataSource.getConnection();) {
-//            Statement statement = connection.createStatement();
-//
-//            logger.info(connection.getMetaData().getURL());
-//            logger.info(connection.getMetaData().getUserName());
-//
-//            String sql = "CREATE TABLE USER (ID INTEGER NOT NULL, name VARCHAR(255), PRIMARY KEY (id))";
-//            statement.executeUpdate(sql);
-////            connection.close();
-//        }
-//
-//        jdbcTemplate.execute("INSERT INTO USER VALUES (1, 'junseong')");
+        try(Connection connection = dataSource.getConnection();) {
+            Statement statement = connection.createStatement();
+
+            logger.info(connection.getMetaData().getDriverName());
+            logger.info(connection.getMetaData().getURL());
+            logger.info(connection.getMetaData().getUserName());
+
+            String sql = "CREATE TABLE account (ID INTEGER NOT NULL, name VARCHAR(255), PRIMARY KEY (id))";
+            statement.executeUpdate(sql);
+//            connection.close();
+        }
+
+        jdbcTemplate.execute("INSERT INTO account VALUES (1, 'junseong')");
     }
 }
